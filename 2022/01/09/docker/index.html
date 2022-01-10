@@ -14,7 +14,7 @@
 <meta property="og:description" content="今天心血来潮想要在GitHub Page上部署一个博客，本来想直接在Ubuntu上配好hexo的环境，可是npm的某些依赖版本和ros melodic不兼容，配置hexo以失败告终，因此我通过docker来绕过这个环境配置，以前只闻docker大名，没有真正用过，今天就来试一下。 环境：Ubuntu 18.041. docker 安装docker，参考华为云镜像中的dockers安装 https:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-09T22:24:30.000Z">
-<meta property="article:modified_time" content="2022-01-09T14:24:19.102Z">
+<meta property="article:modified_time" content="2022-01-10T03:00:55.785Z">
 <meta property="article:author" content="Li Yingxiang">
 <meta name="twitter:card" content="summary">
   
@@ -119,13 +119,14 @@
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apk add openssh</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <ul>
 <li>调用apk命令的时候需要root权限，在docker启动命令行的时候要指定参数</li>
+<li><code>docker exec -it --user root my_hexo_container sh</code></li>
 </ul>
 </li>
 <li><p>hexo的基本使用：</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;article&quot; #创建一个新页面</span><br><span class="line">hexo g #生成静态页面</span><br><span class="line">hexo d #部署 </span><br></pre></td></tr></table></figure>
 <ul>
 <li>注意在部署这一步，需要修改_config.yml文件，加入如下配置<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  # 填上你自己的仓库名，注意后面有`.git`</span><br><span class="line">  repository: git@github.com:xxx/xxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></li>
-<li>注意此处的分支，如果是main的话，请改成main</li>
+<li>注意此处的分支，如果是master的话，请改成main</li>
 </ul>
 </li>
 </ol>
@@ -133,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/09/docker/" data-id="cky7clki70000a1nqeo8cavm3" data-title="docker部署hexo" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/01/09/docker/" data-id="cky83ivgq00000jnqahft3qvt" data-title="docker部署hexo" class="article-share-link">分享</a>
       
       
       
