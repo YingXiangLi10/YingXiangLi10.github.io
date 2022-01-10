@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>DC学习1：overview | Yingxiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="DC学习1：overview QoR: Quality of result TTR: Time to result  1.流程 Synthesis &#x3D; Translation + Logic Optimization + Gate Mapping 第一步：读取RTL文件 read_verilog 第二步：约束 source constraintfile 第三步：综合 compile_ultra 第">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DC学习1：overview">
+<meta property="og:url" content="http://example.com/2022/01/10/DC_learning1/index.html">
+<meta property="og:site_name" content="Yingxiang&#39;s Blog">
+<meta property="og:description" content="DC学习1：overview QoR: Quality of result TTR: Time to result  1.流程 Synthesis &#x3D; Translation + Logic Optimization + Gate Mapping 第一步：读取RTL文件 read_verilog 第二步：约束 source constraintfile 第三步：综合 compile_ultra 第">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-10T22:24:30.000Z">
+<meta property="article:modified_time" content="2022-01-10T16:31:33.694Z">
+<meta property="article:author" content="Li Yingxiang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Yingxiang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Yingxiang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-DC_learning1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/10/DC_learning1/" class="article-date">
+  <time class="dt-published" datetime="2022-01-10T22:24:30.000Z" itemprop="datePublished">2022-01-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      DC学习1：overview
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="DC学习1：overview"><a href="#DC学习1：overview" class="headerlink" title="DC学习1：overview"></a>DC学习1：overview</h1><ul>
+<li>QoR: Quality of result</li>
+<li>TTR: Time to result</li>
+</ul>
+<h2 id="1-流程"><a href="#1-流程" class="headerlink" title="1.流程"></a>1.流程</h2><ul>
+<li>Synthesis = Translation + Logic Optimization + Gate Mapping</li>
+<li>第一步：读取RTL文件 <code>read_verilog</code></li>
+<li>第二步：约束 <code>source constraintfile</code></li>
+<li>第三步：综合 <code>compile_ultra</code></li>
+<li>第四步：查看报告 <code>report_*</code></li>
+<li>第五步：保存网表 <code>write_file</code> <code>write_icc2_files</code></li>
+</ul>
+<h2 id="2-WLM-mode-vs-TOPO-mode"><a href="#2-WLM-mode-vs-TOPO-mode" class="headerlink" title="2. WLM mode vs TOPO mode"></a>2. WLM mode vs TOPO mode</h2><ul>
+<li>WLM 基于fanout，不考虑实际的拓扑结构(可参考dc概论)</li>
+<li>TOPO会考虑粗糙的布局，就可以发现考虑布局产生的影响，需要physical library(Milkyway)和technology data</li>
+</ul>
+<h2 id="3-DC综合的流程"><a href="#3-DC综合的流程" class="headerlink" title="3.DC综合的流程"></a>3.DC综合的流程</h2><ul>
+<li>两步综合</li>
+<li>第一步：当没有floorplan信息的时候，可以使用默认值，也可以个给一些已知的约束，获得第一步综合的结果，这个结果可以给floorplan带来帮助</li>
+<li>第二步：当获得了actual floorplan的结果之后，可以给出这个结果来进行更好的综合</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/01/10/DC_learning1/" data-id="cky8wko5p00000inq9kajd5sp" data-title="DC学习1：overview" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/09/docker/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">docker部署hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/01/10/DC_learning1/">DC学习1：overview</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/09/docker/">docker部署hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/09/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Li Yingxiang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
