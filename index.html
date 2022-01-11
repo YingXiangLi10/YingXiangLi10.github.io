@@ -71,6 +71,103 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-DC-learning1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/11/DC-learning1/" class="article-date">
+  <time class="dt-published" datetime="2022-01-11T05:37:55.000Z" itemprop="datePublished">2022-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/01/11/DC-learning1/">DC_learning1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/01/11/DC-learning1/" data-id="cky9onkou00001nnq2rnnfhkq" data-title="DC_learning1" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-DC_learning1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/10/DC_learning1/" class="article-date">
+  <time class="dt-published" datetime="2022-01-10T22:24:30.000Z" itemprop="datePublished">2022-01-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/01/10/DC_learning1/">DC学习1：overview</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="DC学习1：overview"><a href="#DC学习1：overview" class="headerlink" title="DC学习1：overview"></a>DC学习1：overview</h1><ul>
+<li>QoR: Quality of result</li>
+<li>TTR: Time to result</li>
+</ul>
+<h2 id="1-流程"><a href="#1-流程" class="headerlink" title="1.流程"></a>1.流程</h2><ul>
+<li>Synthesis = Translation + Logic Optimization + Gate Mapping</li>
+<li>第一步：读取RTL文件 <code>read_verilog</code></li>
+<li>第二步：约束 <code>source constraintfile</code></li>
+<li>第三步：综合 <code>compile_ultra</code></li>
+<li>第四步：查看报告 <code>report_*</code></li>
+<li>第五步：保存网表 <code>write_file</code> <code>write_icc2_files</code></li>
+</ul>
+<h2 id="2-WLM-mode-vs-TOPO-mode"><a href="#2-WLM-mode-vs-TOPO-mode" class="headerlink" title="2. WLM mode vs TOPO mode"></a>2. WLM mode vs TOPO mode</h2><ul>
+<li>WLM 基于fanout，不考虑实际的拓扑结构(可参考dc概论)</li>
+<li>TOPO会考虑粗糙的布局，就可以发现考虑布局产生的影响，需要physical library(Milkyway)和technology data</li>
+</ul>
+<h2 id="3-DC综合的流程"><a href="#3-DC综合的流程" class="headerlink" title="3.DC综合的流程"></a>3.DC综合的流程</h2><ul>
+<li>两步综合</li>
+<li>第一步：当没有floorplan信息的时候，可以使用默认值，也可以个给一些已知的约束，获得第一步综合的结果，这个结果可以给floorplan带来帮助</li>
+<li>第二步：当获得了actual floorplan的结果之后，可以给出这个结果来进行更好的综合</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/01/10/DC_learning1/" data-id="cky9omw1000000jnqd9swc3cw" data-title="DC学习1：overview" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-docker" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/01/09/docker/" class="article-date">
@@ -132,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/09/docker/" data-id="cky83ivgq00000jnqahft3qvt" data-title="docker部署hexo" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/01/09/docker/" data-id="cky9omw1600010jnq55y722gj" data-title="docker部署hexo" class="article-share-link">分享</a>
       
       
       
@@ -183,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/09/hello-world/" data-id="cky83ivha00010jnqc69o40i4" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/01/09/hello-world/" data-id="cky9omw1800020jnq7du69aty" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
@@ -224,6 +321,14 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/01/11/DC-learning1/">DC_learning1</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/10/DC_learning1/">DC学习1：overview</a>
+          </li>
         
           <li>
             <a href="/2022/01/09/docker/">docker部署hexo</a>
