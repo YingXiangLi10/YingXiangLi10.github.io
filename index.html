@@ -71,6 +71,89 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vcs-learning1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/13/vcs-learning1/" class="article-date">
+  <time class="dt-published" datetime="2022-01-13T15:28:27.000Z" itemprop="datePublished">2022-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/01/13/vcs-learning1/">VCS 学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-基本用法"><a href="#1-基本用法" class="headerlink" title="1. 基本用法"></a>1. 基本用法</h2><ul>
+<li><code>vcs a.v b.v top.v</code>执行之后可以得到一个名为simv的可执行文件，执行这个文件就可以启动仿真</li>
+<li>针对这个可执行文件有四种常规用法：<ol>
+<li>直接调用，会执行到 <code>$finish</code> ,如果代码里还写了 <code>$stop</code> ，遇到此调用还会启动ucli命令行</li>
+<li>ucli：<code>./simv -ucli</code>调用，可以通过命令行控制仿真，比如说命令行里输入<code>run</code>就会执行仿真，如果编译的时候没有指定特定的-debug选项，会启动mini UCLI，仅支持run和quit</li>
+<li>dve:<code>./simv -gui=dve</code>调用，图形化界面，可以在dve的图形化界面中控制仿真，类似modelsim等</li>
+<li>verdi:<code>./simv -gui=verdi</code>另一个图形界面，功能更强大，需要指定-kdb -lca选项，</li>
+</ol>
+</li>
+</ul>
+<h2 id="2-常用选项"><a href="#2-常用选项" class="headerlink" title="2. 常用选项"></a>2. 常用选项</h2><ul>
+<li><p><code>-y</code>指定库的目录，包含其他的.v文件</p>
+</li>
+<li><p><code>-f configure.f</code>在configure.f里面可以写各种vcs要用到的<strong>编译时的</strong>参数，源文件，路径等等。注意，只有编译过程的选项起效，其他选项并不能放在这个文件中，比如-debug_access+all，能执行的选项包括：</p>
+<ul>
+<li>任意以+开头的编译时选项</li>
+<li>-f -y -l -u -v这五个以-开头的编译时选项</li>
+</ul>
+</li>
+<li><p><code>+libext+.v</code>指定在库中要搜索.v文件</p>
+</li>
+<li><p><code>+incdir+文件路径</code>指定`include搜索的路径</p>
+</li>
+<li><p><code>-suppress=messageID</code>，停止某些信息的输出，如<code>-suppress=SV-LCM-PPWI</code>，停止ID为SV-LCM-PPWI的信息输出</p>
+</li>
+<li><p><code>-timescale=1ns/1ps</code>，设置仿真的timescale</p>
+</li>
+<li><p><code>-sverilog</code>支持system verilog，具体哪个版本查阅手册，vcs2016支持sv2012标准</p>
+</li>
+<li><p><code>+warn=none</code>停止警告信息输出</p>
+</li>
+<li><p><code>-debug_all</code> 打开所有调试功能，需要调试的时候要指定这个选项，除此之外还有类似的<code>-debug_pp</code>,<code>-debug</code>,<code>-debug_access+</code>，性能影响-debug_all&gt;-debug&gt;-debug_pp，-debug_access可以更细粒度的指定功能，可以比-debug_pp消耗更少</p>
+</li>
+<li><p><code>-fsdb/-debug_access+fsdb</code>使能fsdb波形数据记录，-fsdb即将废弃，用-debug_access+fsdb替代</p>
+</li>
+</ul>
+<h2 id="3-Verdi"><a href="#3-Verdi" class="headerlink" title="3. Verdi"></a>3. Verdi</h2><ul>
+<li>verdi可以直接打开fsdb文件，通过-ssf选项</li>
+<li>View -&gt; signal list可以查看信号列表</li>
+</ul>
+<h2 id="4-踩坑记录"><a href="#4-踩坑记录" class="headerlink" title="4. 踩坑记录"></a>4. 踩坑记录</h2><ul>
+<li>system verilog写的package文件，通过-y指定库路径是没法搜到的，需要单独写出源文件</li>
+<li>如果文件名和模块名不一致，也可能无法通过-y指定库路径搜索到，需要单独写出源文件</li>
+<li>如果一个文件里写了一个主module和多个子module，如果主module通过generate语句生成例化子module，可能汇报incorrect construct library的错误,这时候把主模块放到文件顶部就可以解决这个问题？原因未知，猜测和vcs编译文件的读取方式有关</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/01/13/vcs-learning1/" data-id="ckyd4pzdw00001onq02gw3oxl" data-title="VCS 学习" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-DC_learning1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/01/10/DC_learning1/" class="article-date">
@@ -118,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/10/DC_learning1/" data-id="cky9s4mhy00020lnq3qct4j0d" data-title="DC学习1：overview" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/01/10/DC_learning1/" data-id="ckyd4lpxu00000knqdbzgbsnt" data-title="DC学习1：overview" class="article-share-link">分享</a>
       
       
       
@@ -191,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/09/docker/" data-id="cky9s4mhq00000lnqcrqhf62p" data-title="docker部署hexo" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/01/09/docker/" data-id="ckyd4lpy100010knq49vggd2m" data-title="docker部署hexo" class="article-share-link">分享</a>
       
       
       
@@ -242,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/09/hello-world/" data-id="cky9s4mhw00010lnqcyat31z4" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/01/09/hello-world/" data-id="ckyd4lpy800020knq4w8i4gv5" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
@@ -283,6 +366,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/01/13/vcs-learning1/">VCS 学习</a>
+          </li>
         
           <li>
             <a href="/2022/01/10/DC_learning1/">DC学习1：overview</a>
